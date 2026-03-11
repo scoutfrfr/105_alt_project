@@ -6,7 +6,7 @@
 
 **Team:** Caterpie
 
-**Course:** CGAD(delete as appropriate)
+**Course:** CGAD
 
 **Abertay id:** 2502470
 
@@ -30,7 +30,7 @@ Enemies: Enemies will be added to the game in the form of another species of din
 
 Weapon system: The player can now use weapons after gaining the ability to wield weapons which will be given within a level. After the weapon wielding ability is unlocked the player can spend shards to unlock different weapon types. Weapons can be equipped within the players inventory.
 
-Pause Screen: A pause menu with simple text to show to the player that the game is paused. 
+Pause Screen: A pause menu with simple text to show to the player that the game is paused. Music will either be stopped or lowered in volume when paused and will resume as normal alongside the game when the player unpauses.  
 
 
 ## Should Have Features
