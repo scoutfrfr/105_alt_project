@@ -14,7 +14,7 @@
 
 Dino Handyman
 
-Scout Botha, Marcy Liddle, Ailey Tsang, Lewis Brown, Noah Albrock, Kieran Hodgson
+William Kavanagh
 
 ## Title of Extension
 
