@@ -35,7 +35,7 @@ Pause Screen: A pause menu with simple text to show to the player that the game 
 
 ## Should Have Features
 
-Data Driven Level Loading: Implemented to create various levels without having a huge block of code. Makes code more clean and makes thing easier in the long run (gives the ability to add more levels much easily). 
+Data Driven Level Loading: Implemented to create various levels without having a huge block of code. Makes code more clean and makes thing easier in the long run (gives the ability to add more levels more easily). 
 
 Health System: The player has three lives. These can be lost by falling off the map, into hazards or colliding with enemies. If the player loses all three lives they will have to restart the level they are currently on.
 
