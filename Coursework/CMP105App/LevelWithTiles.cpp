@@ -149,7 +149,7 @@ void LevelWithTiles::update(float dt)
 		}
 	}
 	
-	// show text if player has dropped very low down
+	/* show text if player has dropped very low down
 	if (m_promptTimer > 0)
 		m_promptTimer -= dt;
 	else if (m_alertText.getString() != "")
@@ -162,9 +162,9 @@ void LevelWithTiles::update(float dt)
 		m_alertText.setCharacterSize(24);
 		m_alertText.setPosition(m_window.getView().getCenter());
 		m_alertText.setString("Press R to reset");
-	}
+	} */
 	// show text if the player in lever range
-	else if (m_player.inLeverRange())
+	if (m_player.inLeverRange())
 	{
 		m_alertText.setCharacterSize(24);
 		m_alertText.setPosition(m_window.getView().getCenter() + sf::Vector2f(-100.f, -150.f));
@@ -203,8 +203,10 @@ void LevelWithTiles::update(float dt)
 	// reset if fallen too far
 	if (m_player.getPosition().y > 1200)
 	{
+		m_player.takeDamage();
 		m_player.reset();
 		m_audio.playSoundbyName("death");
+
 	}
 
 	// camera follows player, bounded.

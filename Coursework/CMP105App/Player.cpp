@@ -178,3 +178,9 @@ void Player::reset()
 	m_leverPulled = false;
 	m_gameEndTriggered = false;
 }
+
+void Player::takeDamage()
+{
+	m_playerHealth -= 1;
+	std::cout << "\n" << m_playerHealth;
+}
