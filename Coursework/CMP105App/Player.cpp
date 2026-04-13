@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "Framework/BaseLevel.h"
 
 Player::Player()
 {
@@ -124,7 +125,10 @@ void Player::update(float dt)
 
 	m_currAnim->animate(dt);
 	setTextureRect(m_currAnim->getCurrentFrame());
+
+	
 }
+
 
 // only used on tiles for now.
 // collider confirmed to be tile with .isCollider=true
@@ -177,10 +181,28 @@ void Player::reset()
 	m_velocity = { 0,0 };
 	m_leverPulled = false;
 	m_gameEndTriggered = false;
+	if (m_playerDead)
+	{
+		m_playerHealth = 3.0f;
+		m_playerDead = false;
+	}
+
 }
 
 void Player::takeDamage()
 {
 	m_playerHealth -= 1;
-	std::cout << "\n" << m_playerHealth;
+	std::cout << m_playerHealth << "\n";
 }
+
+bool Player::playerDeath()
+{
+	if (m_playerHealth <= 0)
+	{
+		m_playerDead = true;
+	}
+
+	return m_playerDead;
+}
+
+

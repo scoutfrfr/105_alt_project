@@ -1,4 +1,5 @@
 #pragma once
+#include "Scene.h"
 #include "Framework/GameObject.h"
 #include "Framework/Animation.h"
 #include <iostream>
@@ -26,6 +27,7 @@ public:
     bool canDoubleJump() { return m_canDoubleJump; };
     void setAudio(AudioManager* audio) { m_audio = audio; };
     void takeDamage();
+    bool playerDeath();
 
 private:
     sf::Texture m_dinoTexture;
@@ -45,6 +47,7 @@ private:
     bool m_gameEndTriggered = false;
     bool m_canDoubleJump;
     bool m_hasDoubleJumped;
+    bool m_playerDead = false;
     AudioManager* m_audio;
 
     const float SPRINT_COOLDOWN = 2.0f;
@@ -58,6 +61,7 @@ private:
     const float JUMP_FORCE = 20.0f;
     const float SPRINT_ANIM_THRESHOLD = 1.2f * SPEED;
     const float ACTIVATE_RANGE_SQUARED = 700.0f;
+
     
 
 };

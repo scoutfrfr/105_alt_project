@@ -209,6 +209,14 @@ void LevelWithTiles::update(float dt)
 
 	}
 
+	if (m_player.playerDeath() == true)
+	{
+		m_player.reset();
+		m_gameState.setCurrentState(State::GAMEOVER);
+
+	}
+
+
 	// camera follows player, bounded.
 	updateCameraAndBackground();
 
@@ -266,3 +274,6 @@ void LevelWithTiles::onEnd()
 	m_audio.stopAllSounds();
 	m_audio.stopAllMusic();
 }
+
+
+
