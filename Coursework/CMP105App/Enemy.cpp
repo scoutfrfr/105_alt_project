@@ -4,7 +4,7 @@
 Enemy::Enemy()
 {
 
-	if (!m_enemyTexture.loadFromFile("gfx/enemy.png"))
+	if (!m_enemyTexture.loadFromFile("gfx/enemy1.png"))
 		std::cerr << "No enemy texture";
 
 	setTexture(&m_enemyTexture);
