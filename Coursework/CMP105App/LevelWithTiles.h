@@ -3,6 +3,7 @@
 #include "Framework/Collision.h"
 #include "Framework/TileMap.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "Lever.h"
 #include "Flag.h"
 #include <algorithm>
@@ -25,6 +26,7 @@ private:
     TileMap m_tilemap;
     TileMap m_bgtilemap;
     Player m_player;
+    Enemy m_enemyPointers;
     sf::Texture m_tileTexture;
     Lever m_lever;
     sf::Text m_alertText;

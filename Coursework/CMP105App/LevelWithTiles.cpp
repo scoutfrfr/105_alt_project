@@ -92,6 +92,9 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 	m_player.setInput(&m_input);
 	m_player.setEdges(0, WORLD_SIZE.x);
 
+	// setup enemy
+	m_enemyPointers.setEdges(0, WORLD_SIZE.x);
+
 	//m setup text
 	if (!m_font.openFromFile("font/bitcount.ttf")) std::cerr << "no font found";
 	m_alertText.setString("Who keeps turning\nthe wind off?");
@@ -138,6 +141,7 @@ void LevelWithTiles::update(float dt)
 	}
 	m_lever.update(dt);
 	m_player.update(dt);
+	m_enemyPointers.update(dt);
 
 
 	std::vector<GameObject>& level = *m_tilemap.getLevel();
@@ -146,6 +150,11 @@ void LevelWithTiles::update(float dt)
 		if (t.isCollider() && Collision::checkBoundingBox(m_player, t))
 		{
 			m_player.collisionResponse(t);
+		}
+
+		if (t.isCollider() && Collision::checkBoundingBox(m_enemyPointers, t))
+		{
+			m_enemyPointers.collisionResponse(t);
 		}
 	}
 	
@@ -209,6 +218,7 @@ void LevelWithTiles::update(float dt)
 
 	}
 
+	// resets if player dies and changes states
 	if (m_player.playerDeath() == true)
 	{
 		m_player.reset();
@@ -247,6 +257,7 @@ void LevelWithTiles::render()
 	m_window.draw(m_lever);
 	for (auto& flag : m_flags) m_window.draw(*flag);
 	m_window.draw(m_player);
+	m_window.draw(m_enemyPointers);
 	m_window.draw(m_alertText);
 	endDraw();
 }

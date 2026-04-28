@@ -4,7 +4,7 @@
 Player::Player()
 {
 	if (!m_dinoTexture.loadFromFile("gfx/dino1.png"))
-		std::cerr << "No dino texture. sad";
+		std::cerr << "No player texture";
 
 	setTexture(&m_dinoTexture);
 	// Dino is 24x24, tiles are 18x18
