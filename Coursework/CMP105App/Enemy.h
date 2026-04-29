@@ -20,15 +20,22 @@ class Enemy :
 
 	private:
 		sf::Texture m_enemyTexture;
+		sf::Vector2f m_accel;
 		Animation* m_currAnim;
 		Animation m_idle;
 		Animation m_walk;
 		Animation m_sprint;
+
+		bool m_isGrounded;
 
 		float m_leftEdge;
 		float m_rightEdge;
 
 		const float SPEED = 9.0f;
 		const float SPRINT_ANIM_THRESHOLD = 1.2f * SPEED;
+		const float GRAVITY = 50.0f;
+		const float DRAG_FACTOR = 0.9f;
+		const float AIR_DRAG_FACTOR = 0.99f;
+		const float TURN_DRAG = 0.6f;       // allow snappy decel for turning
 };
 

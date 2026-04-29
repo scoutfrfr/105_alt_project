@@ -140,8 +140,9 @@ void LevelWithTiles::update(float dt)
 		for (auto& flag : m_flags) flag->update(dt);
 	}
 	m_lever.update(dt);
-	m_player.update(dt);
 	m_enemyPointers.update(dt);
+	m_player.update(dt);
+
 
 
 	std::vector<GameObject>& level = *m_tilemap.getLevel();
@@ -157,21 +158,7 @@ void LevelWithTiles::update(float dt)
 			m_enemyPointers.collisionResponse(t);
 		}
 	}
-	
-	/* show text if player has dropped very low down
-	if (m_promptTimer > 0)
-		m_promptTimer -= dt;
-	else if (m_alertText.getString() != "")
-	{
-		// turn off prompt
-		m_alertText.setString("");
-	}
-	else if (m_player.getPosition().y > WORLD_SIZE.y)
-	{
-		m_alertText.setCharacterSize(24);
-		m_alertText.setPosition(m_window.getView().getCenter());
-		m_alertText.setString("Press R to reset");
-	} */
+
 	// show text if the player in lever range
 	if (m_player.inLeverRange())
 	{

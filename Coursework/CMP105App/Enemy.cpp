@@ -8,8 +8,8 @@ Enemy::Enemy()
 		std::cerr << "No enemy texture";
 
 	setTexture(&m_enemyTexture);
-	setSize({ 94,94 });
-	setPosition({ 35, 100 });
+	setSize({ 72,72 });
+	setPosition({ 100, 100 });
 
 	for (int i = 0; i < 4; i++)
 		m_idle.addFrame({ { i * 24, 0 }, { 24, 24} });
@@ -33,6 +33,16 @@ Enemy::~Enemy()
 
 void Enemy::update(float dt)
 {
+
+	// newtonian model
+	m_accel.y += GRAVITY;
+	m_velocity += dt * m_accel;
+	if (m_isGrounded && abs(m_accel.x) < 1.f) m_velocity *= DRAG_FACTOR;
+	else if (!m_isGrounded) m_velocity *= AIR_DRAG_FACTOR;
+	else if (m_accel.x * m_velocity.x < 0) m_velocity *= TURN_DRAG;
+
+	m_isGrounded = false;	// every frame we are falling unless proved otherwise by floor collision
+
 	// handle animation
 	float speed = std::abs(m_velocity.x);	// sideways speed
 	if (speed < 1.0)
@@ -62,10 +72,13 @@ void Enemy::update(float dt)
 
 	m_currAnim->animate(dt);
 	setTextureRect(m_currAnim->getCurrentFrame());
+
 }
 
 void Enemy::collisionResponse(GameObject& collider)
 {
+	std::cerr << "\n enemy collision";
+
 	sf::FloatRect enemyCollider = getCollisionBox();
 	sf::FloatRect wallBounds = collider.getCollisionBox();
 	auto overlap = enemyCollider.findIntersection(wallBounds);
@@ -85,6 +98,7 @@ void Enemy::collisionResponse(GameObject& collider)
 			// We are above the wall (Landing)
 			move({ 0, -overlap->size.y });
 			m_velocity.y = 0;       // Stop falling
+			m_isGrounded = true;    // Enable jumping
 		}
 		else
 		{
@@ -93,4 +107,10 @@ void Enemy::collisionResponse(GameObject& collider)
 			m_velocity.y = 0;       // Stop moving up
 		}
 	}
+}
+
+void Enemy::reset()
+{
+	setPosition({ 0, 50 });
+	m_velocity = { 0,0 };
 }
