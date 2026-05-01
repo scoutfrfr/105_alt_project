@@ -25,6 +25,7 @@ void Pause::update(float dt)
 void Pause::render()
 {
 	beginDraw();
+	m_window.draw(m_pauseText);
 	endDraw();
 }
 
