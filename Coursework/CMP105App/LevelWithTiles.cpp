@@ -201,7 +201,7 @@ void LevelWithTiles::update(float dt)
 	if (m_player.getGameEndTriggered())
 	{
 		
-		m_gameState.setCurrentState(State::MENU);
+		m_gameState.setCurrentState(State::LEVELTWO);
 	}
 
 
@@ -211,6 +211,7 @@ void LevelWithTiles::update(float dt)
 		m_player.takeDamage();
 		m_player.reset();
 		m_audio.playSoundbyName("death");
+
 
 	}
 
@@ -264,7 +265,6 @@ void LevelWithTiles::onBegin()
 	m_gamePaused = false;
 	std::cout << "Level one has been started\n";
 	m_audio.playMusicbyName("bgm1");
-	std::cerr << m_gamePaused << "\n";
 	
 }
 

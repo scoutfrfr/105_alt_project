@@ -179,7 +179,6 @@ void Player::reset()
 {
 	setPosition({ 0, 50 });
 	m_velocity = { 0,0 };
-	m_leverPulled = false;
 	m_gameEndTriggered = false;
 	if (m_playerDead)
 	{
