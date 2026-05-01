@@ -8,6 +8,7 @@
 #include <iostream>
 #include "Scene.h"
 #include "Menu.h"
+#include "Pause.h"
 #include "LevelThatSaves.h"
 #include "Framework/AudioManager.h"
 #include "Framework/GameState.h"
@@ -95,6 +96,7 @@ int main()
 	LevelWithTiles tile_level(window, input, gameState, audioManager);
 	LevelTwoWithTiles tile_level_two(window, input, gameState, audioManager);
 	GameOver gameOver(window, input, gameState, audioManager);
+	Pause pause(window, input, gameState, audioManager);
 	Scene* currentScene = &menu;
 
 	// Initialise objects for delta time
@@ -109,9 +111,43 @@ int main()
 		{State::MENU, &menu},
 		{State::LEVELONE, &tile_level},
 		{State::LEVELTWO, &tile_level_two},
-		{State::GAMEOVER, &gameOver}
+		{State::GAMEOVER, &gameOver},
+		{State::PAUSE, &pause}
 	};
+
+	switch (gameState.getCurrentState())
+	{
+	case (State::MENU) :
+		menu.handleInput(deltaTime);
+		menu.update(deltaTime);
+		menu.render();
+	break;
+
+	case (State::LEVELONE):
+		tile_level.handleInput(deltaTime);
+		tile_level.update(deltaTime);
+		tile_level.render();
+	break;
+
+	case (State::LEVELTWO):
+		tile_level_two.handleInput(deltaTime);
+		tile_level_two.update(deltaTime);
+		tile_level_two.render();
+	break;
+
+	case (State::GAMEOVER):
+		gameOver.handleInput(deltaTime);
+		gameOver.update(deltaTime);
+		gameOver.render();
+	break;
+
+	case (State::PAUSE):
+		pause.render();
+	break;
+	}
 	
+	
+
 	// Game Loop
 	while (window.isOpen())
 	{

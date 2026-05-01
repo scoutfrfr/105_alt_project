@@ -33,6 +33,8 @@ private:
     sf::Font m_font;
     std::vector<Flag*> m_flags;
     bool m_flagLeverPulled = false;
+    bool m_gamePaused = false;
+
     float m_promptTimer;
 
     const float PROMPT_TIME = 2.f;
