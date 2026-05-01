@@ -119,6 +119,7 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 	m_lever.setUsed(false);
 	m_player.setLeverPosition({ 2730, 252 });
 	m_player.setAudio(&m_audio);
+
 }
 
 void LevelWithTiles::handleInput(float dt)
@@ -245,39 +246,46 @@ void LevelWithTiles::updateCameraAndBackground()
 
 void LevelWithTiles::render()
 {
-
-	beginDraw();
-	m_bgtilemap.render(m_window);
-	m_tilemap.render(m_window);
-	m_window.draw(m_lever);
-	for (auto& flag : m_flags) m_window.draw(*flag);
-	m_window.draw(m_player);
-	m_window.draw(m_alertText);
-	endDraw();
+	if (m_gamePaused == false)
+	{
+		beginDraw();
+		m_bgtilemap.render(m_window);
+		m_tilemap.render(m_window);
+		m_window.draw(m_lever);
+		for (auto& flag : m_flags) m_window.draw(*flag);
+		m_window.draw(m_player);
+		m_window.draw(m_alertText);
+		endDraw();
+	}
 }
 
 void LevelWithTiles::onBegin()
 {
+	m_gamePaused = false;
 	std::cout << "Level one has been started\n";
 	m_audio.playMusicbyName("bgm1");
+	std::cerr << m_gamePaused << "\n";
 	
 }
 
 void LevelWithTiles::onEnd()
 {
-	std::cout << "Level one has been left\n";
-	// reset player and level state
-	m_player.reset();
-	m_flagLeverPulled = false;
-	// reset alert text
-	m_alertText.setString("Who keeps turning\nthe wind off?");
-	m_alertText.setPosition({ 50, 150 });
-	m_alertText.setCharacterSize(36);
-	m_alertText.setFillColor(sf::Color::Black);
-	m_promptTimer = PROMPT_TIME;
-	// sfx
-	m_audio.stopAllSounds();
-	m_audio.stopAllMusic();
+	if (!m_gamePaused)
+	{
+		std::cout << "Level one has been left\n";
+		// reset player and level state
+		m_player.reset();
+		m_flagLeverPulled = false;
+		// reset alert text
+		m_alertText.setString("Who keeps turning\nthe wind off?");
+		m_alertText.setPosition({ 50, 150 });
+		m_alertText.setCharacterSize(36);
+		m_alertText.setFillColor(sf::Color::Black);
+		m_promptTimer = PROMPT_TIME;
+		// sfx
+		m_audio.stopAllSounds();
+		m_audio.stopAllMusic();
+	}
 }
 
 

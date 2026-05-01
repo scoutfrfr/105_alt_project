@@ -14,7 +14,10 @@ Pause::Pause(sf::RenderWindow& hwnd, Input& in, GameState& gs, AudioManager& aud
 
 void Pause::handleInput(float dt)
 {
-
+	if (m_input.isPressed(sf::Keyboard::Scancode::Escape))
+	{
+		m_gameState.setCurrentState(State::LEVELONE);
+	}
 }
 
 void Pause::update(float dt)
