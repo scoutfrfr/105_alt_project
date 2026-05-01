@@ -123,10 +123,14 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 
 void LevelWithTiles::handleInput(float dt)
 {
+
 	m_player.handleInput(dt);
 
 	if (m_input.isPressed(sf::Keyboard::Scancode::Escape))
-		m_gameState.setCurrentState(State::MENU);
+	{
+		m_gameState.setCurrentState(State::PAUSE);
+		m_gamePaused = true;
+	}
 }
 
 void LevelWithTiles::update(float dt)
@@ -241,6 +245,7 @@ void LevelWithTiles::updateCameraAndBackground()
 
 void LevelWithTiles::render()
 {
+
 	beginDraw();
 	m_bgtilemap.render(m_window);
 	m_tilemap.render(m_window);

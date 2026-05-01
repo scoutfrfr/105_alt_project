@@ -146,6 +146,8 @@ int main()
 	break;
 	}
 	
+	
+
 	// Game Loop
 	while (window.isOpen())
 	{

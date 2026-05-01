@@ -1,9 +1,15 @@
 #include "Pause.h"
 
 Pause::Pause(sf::RenderWindow& hwnd, Input& in, GameState& gs, AudioManager& aud) :
-	Scene(hwnd, in, gs, aud)
+	Scene(hwnd, in, gs, aud), m_pauseText(m_font)
 {
+	if (!m_font.openFromFile("font/bitcount.ttf"))
+		std::cerr << "failed to load bitcount font";
 
+	m_pauseText.setCharacterSize(24);		// setup labels
+	m_pauseText.setPosition({ 120,163 });
+	m_pauseText.setString("Press escape to return");
+	m_pauseText.setFillColor(sf::Color::Black);
 }
 
 void Pause::handleInput(float dt)
