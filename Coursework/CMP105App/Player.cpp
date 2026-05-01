@@ -184,6 +184,7 @@ void Player::reset()
 	{
 		m_playerHealth = 3.0f;
 		m_playerDead = false;
+		m_leverPulled = false;
 	}
 
 }
