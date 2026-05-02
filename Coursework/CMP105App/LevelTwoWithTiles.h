@@ -6,6 +6,7 @@
 #include "Coin.h"
 #include "Flag.h"
 #include <algorithm> // for clamp
+#include "UserInterface.h"
 
 
 class LevelTwoWithTiles :
@@ -27,6 +28,7 @@ private:
     TileMap m_tilemap;
     TileMap m_bgtilemap;
     Player m_player;
+    UserInterface m_ui;
 
     Coin m_coin;
     GameObject m_boopBlock;

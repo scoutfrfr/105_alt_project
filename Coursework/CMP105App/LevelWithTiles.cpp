@@ -91,6 +91,7 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 	// setup player 
 	m_player.setInput(&m_input);
 	m_player.setEdges(0, WORLD_SIZE.x);
+	m_player.setCurrentHealth(3);
 
 	// setup enemy
 	m_enemyPointers.setEdges(0, WORLD_SIZE.x);
@@ -163,7 +164,7 @@ void LevelWithTiles::update(float dt)
 			m_enemyPointers.collisionResponse(t);
 		}
 	}
-
+	
 	// show text if the player in lever range
 	if (m_player.inLeverRange())
 	{
@@ -254,6 +255,7 @@ void LevelWithTiles::render()
 		m_window.draw(m_player);
 		m_window.draw(m_enemyPointers);
 		m_window.draw(m_alertText);
+		m_ui.drawUI(m_window, m_player);
 		endDraw();
 	}
 }

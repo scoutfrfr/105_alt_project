@@ -27,6 +27,8 @@ public:
     bool canDoubleJump() { return m_canDoubleJump; };
     void setAudio(AudioManager* audio) { m_audio = audio; };
     void takeDamage();
+    void setCurrentHealth(float hp) { m_playerHealth = hp; };
+    float getCurrentHealth() { return m_playerHealth; };
     bool playerDeath();
 
 private:

@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "Lever.h"
 #include "Flag.h"
+#include "UserInterface.h"
 #include <algorithm>
 
 class LevelWithTiles :
@@ -27,6 +28,7 @@ private:
     TileMap m_bgtilemap;
     Player m_player;
     Enemy m_enemyPointers;
+    UserInterface m_ui;
     sf::Texture m_tileTexture;
     Lever m_lever;
     sf::Text m_alertText;
