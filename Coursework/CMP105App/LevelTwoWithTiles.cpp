@@ -130,6 +130,7 @@ LevelTwoWithTiles::LevelTwoWithTiles(sf::RenderWindow& window, Input& input, Gam
 
 void LevelTwoWithTiles::onBegin()
 {
+	m_gamePaused = false;
 	m_boopBlock.setAlive(false);
 	m_coin.setAlive(false);
 	m_player.setPosition({ 100, 100 });
@@ -138,11 +139,14 @@ void LevelTwoWithTiles::onBegin()
 
 void LevelTwoWithTiles::onEnd()
 {
-	// reset player
-	m_player.setCanDoubleJump(false);
-	// sfx
-	m_audio.stopAllSounds();
-	m_audio.stopAllMusic();
+	if (!m_gamePaused)
+	{
+		// reset player
+		m_player.setCanDoubleJump(false);
+		// sfx
+		m_audio.stopAllSounds();
+		m_audio.stopAllMusic();
+	}
 }
 
 void LevelTwoWithTiles::handleInput(float dt)
@@ -151,11 +155,16 @@ void LevelTwoWithTiles::handleInput(float dt)
 
 	// if I press F on the flag  / I press escape.
 	if (((m_flag.getPosition() - m_player.getPosition()).length() < 75 &&
-		m_input.isPressed(sf::Keyboard::Scancode::F)) ||
-		m_input.isPressed(sf::Keyboard::Scancode::Escape))
+		m_input.isPressed(sf::Keyboard::Scancode::F)))
 	{
 		// return to menu.
 		m_gameState.setCurrentState(State::MENU);
+	}
+
+	if (m_input.isPressed(sf::Keyboard::Scancode::Escape))
+	{
+		m_gameState.setCurrentState(State::PAUSE);
+		m_gamePaused = true;
 	}
 }
 
@@ -275,13 +284,16 @@ void LevelTwoWithTiles::checkAndSetMessages()
 
 void LevelTwoWithTiles::render()
 {
-	beginDraw();
-	m_bgtilemap.render(m_window);
-	m_tilemap.render(m_window);
-	if (m_boopBlock.isAlive()) m_window.draw(m_boopBlock);
-	m_window.draw(m_flag);
-	m_window.draw(m_player);
-	if (m_coin.isAlive()) m_window.draw(m_coin);
-	m_window.draw(m_alertText);
-	endDraw();
+	if (m_gamePaused == false)
+	{
+		beginDraw();
+		m_bgtilemap.render(m_window);
+		m_tilemap.render(m_window);
+		if (m_boopBlock.isAlive()) m_window.draw(m_boopBlock);
+		m_window.draw(m_flag);
+		m_window.draw(m_player);
+		if (m_coin.isAlive()) m_window.draw(m_coin);
+		m_window.draw(m_alertText);
+		endDraw();
+	}
 }
