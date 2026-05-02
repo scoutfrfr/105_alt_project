@@ -91,6 +91,7 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 	// setup player 
 	m_player.setInput(&m_input);
 	m_player.setEdges(0, WORLD_SIZE.x);
+	m_player.setCurrentHealth(3);
 
 	//m setup text
 	if (!m_font.openFromFile("font/bitcount.ttf")) std::cerr << "no font found";
@@ -154,20 +155,6 @@ void LevelWithTiles::update(float dt)
 		}
 	}
 	
-	/* show text if player has dropped very low down
-	if (m_promptTimer > 0)
-		m_promptTimer -= dt;
-	else if (m_alertText.getString() != "")
-	{
-		// turn off prompt
-		m_alertText.setString("");
-	}
-	else if (m_player.getPosition().y > WORLD_SIZE.y)
-	{
-		m_alertText.setCharacterSize(24);
-		m_alertText.setPosition(m_window.getView().getCenter());
-		m_alertText.setString("Press R to reset");
-	} */
 	// show text if the player in lever range
 	if (m_player.inLeverRange())
 	{
@@ -256,6 +243,7 @@ void LevelWithTiles::render()
 		for (auto& flag : m_flags) m_window.draw(*flag);
 		m_window.draw(m_player);
 		m_window.draw(m_alertText);
+    m_ui.drawUI(m_window, m_player);
 		endDraw();
 	}
 }
