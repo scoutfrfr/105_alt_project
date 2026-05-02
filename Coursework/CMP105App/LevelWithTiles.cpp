@@ -243,7 +243,7 @@ void LevelWithTiles::render()
 		for (auto& flag : m_flags) m_window.draw(*flag);
 		m_window.draw(m_player);
 		m_window.draw(m_alertText);
-    m_ui.drawUI(m_window, m_player);
+		m_ui.drawUI(m_window, m_player);
 		endDraw();
 	}
 }

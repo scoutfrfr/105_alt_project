@@ -214,11 +214,20 @@ void LevelTwoWithTiles::update(float dt)
 		m_boopBlock.setAlive(true);
 	}
 
-	// reset if fallen too far
 	if (m_player.getPosition().y > 1200)
 	{
+		m_player.takeDamage();
 		m_player.reset();
 		m_audio.playSoundbyName("death");
+
+
+	}
+
+	if (m_player.playerDeath() == true)
+	{
+		m_player.reset();
+		m_gameState.setCurrentState(State::GAMEOVER);
+
 	}
 
 	updateCameraAndBackground();
@@ -294,6 +303,7 @@ void LevelTwoWithTiles::render()
 		m_window.draw(m_player);
 		if (m_coin.isAlive()) m_window.draw(m_coin);
 		m_window.draw(m_alertText);
+		m_ui.drawUI(m_window, m_player);
 		endDraw();
 	}
 }
