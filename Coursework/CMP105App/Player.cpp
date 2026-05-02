@@ -195,6 +195,7 @@ void Player::takeDamage()
 	std::cout << m_playerHealth << "\n";
 }
 
+
 bool Player::playerDeath()
 {
 	if (m_playerHealth <= 0)
