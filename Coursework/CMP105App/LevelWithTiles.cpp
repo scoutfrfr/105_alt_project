@@ -125,13 +125,19 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 
 void LevelWithTiles::handleInput(float dt)
 {
-
 	m_player.handleInput(dt);
 
 	if (m_input.isPressed(sf::Keyboard::Scancode::Escape))
 	{
-		m_gameState.setCurrentState(State::PAUSE);
-		m_gamePaused = true;
+		/*m_gameState.setCurrentState(State::PAUSE);*/
+		if (m_gamePaused == false)
+		{
+			m_gamePaused = true;
+		}
+		else
+		{
+			m_gamePaused = false;
+		}
 	}
 }
 
@@ -143,7 +149,11 @@ void LevelWithTiles::update(float dt)
 		for (auto& flag : m_flags) flag->update(dt);
 	}
 	m_lever.update(dt);
-	m_player.update(dt);
+
+	if (m_gamePaused == false)
+	{
+		m_player.update(dt);
+	}
 
 
 	std::vector<GameObject>& level = *m_tilemap.getLevel();
