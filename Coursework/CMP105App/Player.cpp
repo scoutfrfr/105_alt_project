@@ -132,6 +132,7 @@ void Player::update(float dt)
 		if (invincibilityClock.getElapsedTime().asSeconds() > m_invincibilityDuration)
 		{
 			m_isInvincible = false;
+			setFillColor(sf::Color::White);
 		}
 	}
 }
@@ -204,6 +205,7 @@ void Player::takeDamage()
 		std::cout << m_playerHealth << "\n";
 		m_isInvincible = true;
 		invincibilityClock.restart();
+		setFillColor(sf::Color::Red);
 	}
 }
 

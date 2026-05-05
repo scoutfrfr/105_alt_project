@@ -43,7 +43,7 @@ private:
     float m_leftEdge;
     float m_rightEdge;
     float m_playerHealth = 3.0f;
-    float m_invincibilityDuration = 2.0f;
+    float m_invincibilityDuration = 1.5f;
     sf::Vector2f m_leverPosition;
     sf::Vector2f m_endPosition;
     sf::Clock invincibilityClock;
