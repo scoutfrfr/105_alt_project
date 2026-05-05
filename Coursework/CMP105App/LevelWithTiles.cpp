@@ -100,7 +100,7 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 
 	
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 1; i++)
 	{
 		Enemy* new_enemy = new Enemy;
 		new_enemy->setPosition(enemy_locations[i]);
