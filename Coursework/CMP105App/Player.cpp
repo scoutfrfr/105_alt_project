@@ -79,9 +79,12 @@ void Player::handleInput(float dt)
 	}
 	if (m_input->isPressed(sf::Keyboard::Scancode::B))
 	{
-		m_isAttacking = true;
-		m_audio->playSoundbyName("attack");
-		attackClock.restart();
+		if (m_weaponUnlocked)
+		{
+			m_isAttacking = true;
+			m_audio->playSoundbyName("attack");
+			attackClock.restart();
+		}
 	}
 
 	// for debugging: "Where am I?"

@@ -58,6 +58,7 @@ private:
     bool m_playerDead = false;
     bool m_isInvincible = false;
     bool m_isAttacking = false;
+    bool m_weaponUnlocked = true;
     AudioManager* m_audio;
 
     const float SPRINT_COOLDOWN = 2.0f;
