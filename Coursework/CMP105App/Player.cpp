@@ -126,7 +126,14 @@ void Player::update(float dt)
 	m_currAnim->animate(dt);
 	setTextureRect(m_currAnim->getCurrentFrame());
 
-	
+	// i-frames
+	if (m_isInvincible)
+	{
+		if (invincibilityClock.getElapsedTime().asSeconds() > m_invincibilityDuration)
+		{
+			m_isInvincible = false;
+		}
+	}
 }
 
 
@@ -191,8 +198,13 @@ void Player::reset()
 
 void Player::takeDamage()
 {
-	m_playerHealth -= 1;
-	std::cout << m_playerHealth << "\n";
+	if (!m_isInvincible)
+	{
+		m_playerHealth -= 1;
+		std::cout << m_playerHealth << "\n";
+		m_isInvincible = true;
+		invincibilityClock.restart();
+	}
 }
 
 

@@ -34,10 +34,8 @@ void Enemy::update(float dt)
 {
 
 	// newtonian model
-	m_accel.y += GRAVITY;
 	m_velocity += dt * m_accel;
 	if (m_isGrounded && abs(m_accel.x) < 1.f) m_velocity *= DRAG_FACTOR;
-	else if (!m_isGrounded) m_velocity *= AIR_DRAG_FACTOR;
 	else if (m_accel.x * m_velocity.x < 0) m_velocity *= TURN_DRAG;
 
 	m_isGrounded = false;	// every frame we are falling unless proved otherwise by floor collision
@@ -57,7 +55,7 @@ void Enemy::update(float dt)
 		// if we gotta flip, flip.
 		m_currAnim->setFlipped(!m_currAnim->getFlipped());
 
-	/*move(m_velocity);*/
+	move(m_velocity);
 
 	// keep within L/R bounds
 	if (getPosition().x < m_leftEdge)

@@ -95,7 +95,7 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 
 	// setup enemy
 	std::vector<sf::Vector2f> enemy_locations = {
-		{160, 100}
+		{160, 325}
 	};
 
 	for (int i = 0; i < 1; i++)
@@ -104,8 +104,6 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 		new_enemy->setPosition(enemy_locations[i]);
 		new_enemy->setEdges(0, WORLD_SIZE.x);
 		m_enemyPointers.push_back(new_enemy);
-
-		
 	}
 
 
@@ -179,13 +177,13 @@ void LevelWithTiles::update(float dt)
 	}
 
 
-	/*for (auto enemy : m_enemyPointers)
+	for (auto enemy : m_enemyPointers)
 	{
 		if (Collision::checkBoundingBox(*enemy, m_player))
 		{
-
+			m_player.takeDamage();
 		}
-	}*/
+	}
 	
 	// show text if the player in lever range
 	if (m_player.inLeverRange())

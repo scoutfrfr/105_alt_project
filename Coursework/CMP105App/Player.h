@@ -43,13 +43,16 @@ private:
     float m_leftEdge;
     float m_rightEdge;
     float m_playerHealth = 3.0f;
+    float m_invincibilityDuration = 2.0f;
     sf::Vector2f m_leverPosition;
     sf::Vector2f m_endPosition;
+    sf::Clock invincibilityClock;
     bool m_leverPulled = false;
     bool m_gameEndTriggered = false;
     bool m_canDoubleJump;
     bool m_hasDoubleJumped;
     bool m_playerDead = false;
+    bool m_isInvincible = false;
     AudioManager* m_audio;
 
     const float SPRINT_COOLDOWN = 2.0f;
