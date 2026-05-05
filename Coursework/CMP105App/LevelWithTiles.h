@@ -3,6 +3,7 @@
 #include "Framework/Collision.h"
 #include "Framework/TileMap.h"
 #include "Player.h"
+#include "Enemy.h"
 #include "Lever.h"
 #include "Flag.h"
 #include "UserInterface.h"
@@ -26,6 +27,7 @@ private:
     TileMap m_tilemap;
     TileMap m_bgtilemap;
     Player m_player;
+    std::vector<Enemy*> m_enemyPointers;
     UserInterface m_ui;
     sf::Texture m_tileTexture;
     Lever m_lever;
@@ -36,6 +38,8 @@ private:
     bool m_gamePaused = false;
 
     float m_promptTimer;
+    float m_enemyX;
+    float m_enemyY;
 
     const float PROMPT_TIME = 2.f;
     const sf::Vector2i WORLD_SIZE = { 2880, 648 };

@@ -93,6 +93,23 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 	m_player.setEdges(0, WORLD_SIZE.x);
 	m_player.setCurrentHealth(3);
 
+	// setup enemies
+	std::vector<sf::Vector2f> enemy_locations = {
+		{160, 325},
+		{1330, 110}
+	};
+
+	
+
+	for (int i = 0; i < 2; i++)
+	{
+		Enemy* new_enemy = new Enemy;
+		new_enemy->setPosition(enemy_locations[i]);
+		new_enemy->setEdges(0, WORLD_SIZE.x);
+		m_enemyPointers.push_back(new_enemy);
+	}
+
+
 	//m setup text
 	if (!m_font.openFromFile("font/bitcount.ttf")) std::cerr << "no font found";
 	m_alertText.setString("Who keeps turning\nthe wind off?");
@@ -163,6 +180,21 @@ void LevelWithTiles::update(float dt)
 		{
 			m_player.collisionResponse(t);
 		}
+
+	}
+
+	for (auto enemy : m_enemyPointers)
+	{
+		enemy->update(dt);
+	}
+
+
+	for (auto enemy : m_enemyPointers)
+	{
+		if (Collision::checkBoundingBox(*enemy, m_player))
+		{
+			m_player.takeDamage();
+		}
 	}
 	
 	// show text if the player in lever range
@@ -212,6 +244,7 @@ void LevelWithTiles::update(float dt)
 
 	}
 
+	// resets if player dies and changes states
 	if (m_player.playerDeath() == true)
 	{
 		m_player.reset();
@@ -253,6 +286,7 @@ void LevelWithTiles::render()
 		for (auto& flag : m_flags) m_window.draw(*flag);
 		m_window.draw(m_player);
 		m_window.draw(m_alertText);
+		for (auto enemy : m_enemyPointers) m_window.draw(*enemy);
 		m_ui.drawUI(m_window, m_player);
 		endDraw();
 	}

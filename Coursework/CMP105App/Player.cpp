@@ -4,7 +4,7 @@
 Player::Player()
 {
 	if (!m_dinoTexture.loadFromFile("gfx/dino1.png"))
-		std::cerr << "No dino texture. sad";
+		std::cerr << "No player texture";
 
 	setTexture(&m_dinoTexture);
 	// Dino is 24x24, tiles are 18x18
@@ -126,7 +126,15 @@ void Player::update(float dt)
 	m_currAnim->animate(dt);
 	setTextureRect(m_currAnim->getCurrentFrame());
 
-	
+	// i-frames
+	if (m_isInvincible)
+	{
+		if (invincibilityClock.getElapsedTime().asSeconds() > m_invincibilityDuration)
+		{
+			m_isInvincible = false;
+			setFillColor(sf::Color::White);
+		}
+	}
 }
 
 
@@ -180,9 +188,9 @@ void Player::reset()
 	setPosition({ 0, 50 });
 	m_velocity = { 0,0 };
 	m_gameEndTriggered = false;
+	m_playerHealth = 3.0f;
 	if (m_playerDead)
 	{
-		m_playerHealth = 3.0f;
 		m_playerDead = false;
 		m_leverPulled = false;
 	}
@@ -191,8 +199,14 @@ void Player::reset()
 
 void Player::takeDamage()
 {
-	m_playerHealth -= 1;
-	std::cout << m_playerHealth << "\n";
+	if (!m_isInvincible)
+	{
+		m_playerHealth -= 1;
+		std::cout << m_playerHealth << "\n";
+		m_isInvincible = true;
+		invincibilityClock.restart();
+		setFillColor(sf::Color::Red);
+	}
 }
 
 
