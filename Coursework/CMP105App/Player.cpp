@@ -235,6 +235,7 @@ void Player::takeDamage()
 }
 
 
+
 bool Player::playerDeath()
 {
 	if (m_playerHealth <= 0)

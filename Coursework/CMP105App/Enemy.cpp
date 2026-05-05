@@ -110,3 +110,5 @@ void Enemy::reset()
 {
 	m_velocity = { 0,0 };
 }
+
+

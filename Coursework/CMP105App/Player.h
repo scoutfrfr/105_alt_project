@@ -29,6 +29,7 @@ public:
     void takeDamage();
     void setCurrentHealth(float hp) { m_playerHealth = hp; };
     float getCurrentHealth() { return m_playerHealth; };
+    bool playerAttack() { return m_isAttacking; };
     bool playerDeath();
 
 private:

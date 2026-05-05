@@ -182,19 +182,31 @@ void LevelWithTiles::update(float dt)
 
 	}
 
-	for (auto enemy : m_enemyPointers)
+	if (!m_enemyDead)
 	{
-		enemy->update(dt);
-	}
-
-
-	for (auto enemy : m_enemyPointers)
-	{
-		if (Collision::checkBoundingBox(*enemy, m_player))
+		for (auto enemy : m_enemyPointers)
 		{
-			m_player.takeDamage();
+			enemy->update(dt);
+		}
+
+		for (auto enemy : m_enemyPointers)
+		{
+			if (Collision::checkBoundingBox(*enemy, m_player))
+			{
+				if (m_player.playerAttack() == false)
+				{
+					m_player.takeDamage();
+				}
+				else
+				{
+					enemy->setAlive(false);
+					m_enemyDead = true;
+				}
+			}
 		}
 	}
+
+
 	
 	// show text if the player in lever range
 	if (m_player.inLeverRange())
@@ -285,7 +297,10 @@ void LevelWithTiles::render()
 		for (auto& flag : m_flags) m_window.draw(*flag);
 		m_window.draw(m_player);
 		m_window.draw(m_alertText);
-		for (auto enemy : m_enemyPointers) m_window.draw(*enemy);
+		if (!m_enemyDead)
+		{
+			for (auto enemy : m_enemyPointers) m_window.draw(*enemy);
+		}
 		m_ui.drawUI(m_window, m_player);
 		endDraw();
 	}
@@ -293,6 +308,7 @@ void LevelWithTiles::render()
 
 void LevelWithTiles::onBegin()
 {
+	m_enemyDead = false;
 	m_gamePaused = false;
 	std::cout << "Level one has been started\n";
 	m_audio.playMusicbyName("bgm1");
@@ -307,6 +323,7 @@ void LevelWithTiles::onEnd()
 		// reset player and level state
 		m_player.reset();
 		m_flagLeverPulled = false;
+		m_enemyDead = false;
 		// reset alert text
 		m_alertText.setString("Who keeps turning\nthe wind off?");
 		m_alertText.setPosition({ 50, 150 });
