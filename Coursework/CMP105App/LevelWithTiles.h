@@ -36,10 +36,10 @@ private:
     std::vector<Flag*> m_flags;
     bool m_flagLeverPulled = false;
     bool m_gamePaused = false;
+    bool m_enemyDead = false;
 
     float m_promptTimer;
-    float m_enemyX;
-    float m_enemyY;
+    
 
     const float PROMPT_TIME = 2.f;
     const sf::Vector2i WORLD_SIZE = { 2880, 648 };

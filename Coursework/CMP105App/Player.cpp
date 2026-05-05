@@ -3,7 +3,7 @@
 
 Player::Player()
 {
-	if (!m_dinoTexture.loadFromFile("gfx/dino1.png"))
+	if (!m_dinoTexture.loadFromFile("gfx/dino1Weapon1.png"))
 		std::cerr << "No player texture";
 
 	setTexture(&m_dinoTexture);
@@ -18,11 +18,14 @@ Player::Player()
 		m_walk.addFrame({{ i * 24, 0 }, { 24, 24}});
 	for(int i = 16; i < 24; i++)
 		m_sprint.addFrame({ { i * 24, 0 }, { 24, 24} });
+	for (int i = 10; i < 14; i++)
+		m_attack.addFrame({ { i * 24, 0 }, { 24, 24} });
 
 	m_currAnim = &m_walk;
 	m_walk.setFrameSpeed(1.f / 10.f);
 	m_idle.setFrameSpeed(1.f / 4.f);
 	m_sprint.setFrameSpeed(1.4 / 15.0f);
+	m_attack.setFrameSpeed(1.f / 4.f);
 
 	setCollisionBox({ {12,12}, { 45,51 } });
 
@@ -74,6 +77,15 @@ void Player::handleInput(float dt)
 			m_gameEndTriggered = true;
 		}
 	}
+	if (m_input->isPressed(sf::Keyboard::Scancode::B))
+	{
+		if (m_weaponUnlocked)
+		{
+			m_isAttacking = true;
+			m_audio->playSoundbyName("attack");
+			attackClock.restart();
+		}
+	}
 
 	// for debugging: "Where am I?"
 	if (m_input->isPressed(sf::Keyboard::Scancode::T))
@@ -105,6 +117,9 @@ void Player::update(float dt)
 	else
 		m_currAnim = &m_walk;
 
+	if (m_isAttacking)
+		m_currAnim = &m_attack;
+
 	// face direction
 	if (m_velocity.x > 0 && m_currAnim->getFlipped()
 		|| m_velocity.x < 0 && !m_currAnim->getFlipped())
@@ -133,6 +148,19 @@ void Player::update(float dt)
 		{
 			m_isInvincible = false;
 			setFillColor(sf::Color::White);
+		}
+	}
+
+	// attacking
+	if (m_isAttacking)
+	{
+		if (attackClock.getElapsedTime().asSeconds() > m_attackDuration)
+		{
+			m_isAttacking = false;
+			if (!m_attack.getPlaying())
+			{
+				m_attack.reset();
+			}
 		}
 	}
 }
@@ -188,11 +216,11 @@ void Player::reset()
 	setPosition({ 0, 50 });
 	m_velocity = { 0,0 };
 	m_gameEndTriggered = false;
-	m_playerHealth = 3.0f;
 	if (m_playerDead)
 	{
 		m_playerDead = false;
 		m_leverPulled = false;
+		m_playerHealth = 3.0f;
 	}
 
 }
@@ -208,6 +236,7 @@ void Player::takeDamage()
 		setFillColor(sf::Color::Red);
 	}
 }
+
 
 
 bool Player::playerDeath()
