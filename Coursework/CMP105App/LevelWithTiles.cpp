@@ -93,12 +93,15 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 	m_player.setEdges(0, WORLD_SIZE.x);
 	m_player.setCurrentHealth(3);
 
-	// setup enemy
+	// setup enemies
 	std::vector<sf::Vector2f> enemy_locations = {
-		{160, 325}
+		{160, 325},
+		{1330, 110}
 	};
 
-	for (int i = 0; i < 1; i++)
+	
+
+	for (int i = 0; i < 2; i++)
 	{
 		Enemy* new_enemy = new Enemy;
 		new_enemy->setPosition(enemy_locations[i]);

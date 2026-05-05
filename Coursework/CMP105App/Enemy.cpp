@@ -108,6 +108,5 @@ void Enemy::collisionResponse(GameObject& collider)
 
 void Enemy::reset()
 {
-	setPosition({ 0, 50 });
 	m_velocity = { 0,0 };
 }
