@@ -95,7 +95,6 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 
 	// setup enemies
 	std::vector<sf::Vector2f> enemy_locations = {
-		{160, 325},
 		{1330, 110}
 	};
 
