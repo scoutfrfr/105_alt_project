@@ -163,14 +163,25 @@ void LevelTwoWithTiles::handleInput(float dt)
 
 	if (m_input.isPressed(sf::Keyboard::Scancode::Escape))
 	{
-		m_gameState.setCurrentState(State::PAUSE);
-		m_gamePaused = true;
+		/*m_gameState.setCurrentState(State::PAUSE);*/
+		if (m_gamePaused == false)
+		{
+			m_gamePaused = true;
+		}
+		else
+		{
+			m_gamePaused = false;
+		}
 	}
 }
 
 void LevelTwoWithTiles::update(float dt)
 {
-	m_player.update(dt);
+	if (m_gamePaused == false)
+	{
+		m_player.update(dt);
+	}
+	
 	m_flag.update(dt);
 	if (m_coin.isAlive()) m_coin.update(dt);
 
