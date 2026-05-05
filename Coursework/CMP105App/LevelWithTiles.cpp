@@ -94,7 +94,20 @@ LevelWithTiles::LevelWithTiles(sf::RenderWindow& window, Input& input, GameState
 	m_player.setCurrentHealth(3);
 
 	// setup enemy
-	m_enemyPointers.setEdges(0, WORLD_SIZE.x);
+	std::vector<sf::Vector2f> enemy_locations = {
+		{160, 100}
+	};
+
+	for (int i = 0; i < 1; i++)
+	{
+		Enemy* new_enemy = new Enemy;
+		new_enemy->setPosition(enemy_locations[i]);
+		new_enemy->setEdges(0, WORLD_SIZE.x);
+		m_enemyPointers.push_back(new_enemy);
+
+		
+	}
+
 
 	//m setup text
 	if (!m_font.openFromFile("font/bitcount.ttf")) std::cerr << "no font found";
@@ -146,9 +159,8 @@ void LevelWithTiles::update(float dt)
 		for (auto& flag : m_flags) flag->update(dt);
 	}
 	m_lever.update(dt);
-	m_enemyPointers.update(dt);
 	m_player.update(dt);
-
+	
 
 
 	std::vector<GameObject>& level = *m_tilemap.getLevel();
@@ -159,11 +171,21 @@ void LevelWithTiles::update(float dt)
 			m_player.collisionResponse(t);
 		}
 
-		if (t.isCollider() && Collision::checkBoundingBox(m_enemyPointers, t))
-		{
-			m_enemyPointers.collisionResponse(t);
-		}
 	}
+
+	for (auto enemy : m_enemyPointers)
+	{
+		enemy->update(dt);
+	}
+
+
+	/*for (auto enemy : m_enemyPointers)
+	{
+		if (Collision::checkBoundingBox(*enemy, m_player))
+		{
+
+		}
+	}*/
 	
 	// show text if the player in lever range
 	if (m_player.inLeverRange())
@@ -253,8 +275,8 @@ void LevelWithTiles::render()
 		m_window.draw(m_lever);
 		for (auto& flag : m_flags) m_window.draw(*flag);
 		m_window.draw(m_player);
-		m_window.draw(m_enemyPointers);
 		m_window.draw(m_alertText);
+		for (auto enemy : m_enemyPointers) m_window.draw(*enemy);
 		m_ui.drawUI(m_window, m_player);
 		endDraw();
 	}

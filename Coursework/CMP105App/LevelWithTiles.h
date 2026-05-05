@@ -27,7 +27,7 @@ private:
     TileMap m_tilemap;
     TileMap m_bgtilemap;
     Player m_player;
-    Enemy m_enemyPointers;
+    std::vector<Enemy*> m_enemyPointers;
     UserInterface m_ui;
     sf::Texture m_tileTexture;
     Lever m_lever;

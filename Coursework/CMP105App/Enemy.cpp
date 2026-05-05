@@ -9,7 +9,6 @@ Enemy::Enemy()
 
 	setTexture(&m_enemyTexture);
 	setSize({ 72,72 });
-	setPosition({ 100, 100 });
 
 	for (int i = 0; i < 4; i++)
 		m_idle.addFrame({ { i * 24, 0 }, { 24, 24} });
@@ -58,7 +57,7 @@ void Enemy::update(float dt)
 		// if we gotta flip, flip.
 		m_currAnim->setFlipped(!m_currAnim->getFlipped());
 
-	move(m_velocity);
+	/*move(m_velocity);*/
 
 	// keep within L/R bounds
 	if (getPosition().x < m_leftEdge)
