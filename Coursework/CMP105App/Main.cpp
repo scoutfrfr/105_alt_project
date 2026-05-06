@@ -13,6 +13,8 @@
 #include "Framework/GameState.h"
 #include "LevelWithTiles.h"
 #include "LevelTwoWithTiles.h"
+#include "LevelThreeWithTiles.h"
+#include "LevelFourWithTiles.h"
 #include "GameOver.h"
 
 #ifndef SFML_VERSION_MAJOR
@@ -94,6 +96,8 @@ int main()
 	Menu menu(window, input, gameState, audioManager);
 	LevelWithTiles tile_level(window, input, gameState, audioManager);
 	LevelTwoWithTiles tile_level_two(window, input, gameState, audioManager);
+	LevelThreeWithTiles tile_level_three(window, input, gameState, audioManager);
+	LevelFourWithTiles tile_level_four(window, input, gameState, audioManager);
 	GameOver gameOver(window, input, gameState, audioManager);
 	Scene* currentScene = &menu;
 
@@ -109,6 +113,8 @@ int main()
 		{State::MENU, &menu},
 		{State::LEVELONE, &tile_level},
 		{State::LEVELTWO, &tile_level_two},
+		{State::LEVELTHREE, &tile_level_three},
+		{State::LEVELFOUR, &tile_level_four},
 		{State::GAMEOVER, &gameOver}
 	};
 
@@ -130,6 +136,18 @@ int main()
 		tile_level_two.handleInput(deltaTime);
 		tile_level_two.update(deltaTime);
 		tile_level_two.render();
+	break;
+
+	case (State::LEVELTHREE):
+		tile_level_three.handleInput(deltaTime);
+		tile_level_three.update(deltaTime);
+		tile_level_three.render();
+	break;
+
+	case (State::LEVELFOUR):
+		tile_level_four.handleInput(deltaTime);
+		tile_level_four.update(deltaTime);
+		tile_level_four.render();
 	break;
 
 	case (State::GAMEOVER):

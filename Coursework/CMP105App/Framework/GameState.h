@@ -6,7 +6,7 @@
 #pragma once
 
 // Possible states. This enum can be modified to add additional states as required.
-enum class State { MENU, LEVELONE, LEVELTWO, CREDITS, GAMEOVER };
+enum class State { MENU, LEVELONE, LEVELTWO, LEVELTHREE, LEVELFOUR, CREDITS, GAMEOVER };
 
 class GameState
 {
