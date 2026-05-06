@@ -195,6 +195,8 @@ sfml-network.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClCompile Include="Framework\SoundObject.cpp" />
     <ClCompile Include="Framework\TileMap.cpp" />
     <ClCompile Include="GameOver.cpp" />
+    <ClCompile Include="LevelFourWithTiles.cpp" />
+    <ClCompile Include="LevelThreeWithTiles.cpp" />
     <ClCompile Include="LevelTwoWithTiles.cpp" />
     <ClCompile Include="LevelWithTiles.cpp" />
     <ClCompile Include="Lever.cpp" />
@@ -218,6 +220,8 @@ sfml-network.lib;%(AdditionalDependencies)</AdditionalDependencies>
     <ClInclude Include="Framework\SoundObject.h" />
     <ClInclude Include="Framework\TileMap.h" />
     <ClInclude Include="GameOver.h" />
+    <ClInclude Include="LevelFourWithTiles.h" />
+    <ClInclude Include="LevelThreeWithTiles.h" />
     <ClInclude Include="LevelTwoWithTiles.h" />
     <ClInclude Include="LevelWithTiles.h" />
     <ClInclude Include="Lever.h" />

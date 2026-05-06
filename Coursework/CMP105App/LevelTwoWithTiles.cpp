@@ -124,12 +124,28 @@ LevelTwoWithTiles::LevelTwoWithTiles(sf::RenderWindow& window, Input& input, Gam
 	m_alertText.setCharacterSize(36);
 	m_alertText.setFillColor(sf::Color::Black);
 
+	// setup enemies
+	std::vector<sf::Vector2f> enemy_locations = {
+		{1047, 81}
+	};
+
+
+
+	for (int i = 0; i < 1; i++)
+	{
+		Enemy* new_enemy = new Enemy;
+		new_enemy->setPosition(enemy_locations[i]);
+		new_enemy->setEdges(0, WORLD_SIZE.x);
+		m_enemyPointers.push_back(new_enemy);
+	}
+
 	
 
 }
 
 void LevelTwoWithTiles::onBegin()
 {
+	m_enemyDead = false;
 	m_gamePaused = false;
 	m_boopBlock.setAlive(false);
 	m_coin.setAlive(false);
@@ -143,6 +159,7 @@ void LevelTwoWithTiles::onEnd()
 	{
 		// reset player
 		m_player.setCanDoubleJump(false);
+		m_enemyDead = false;
 		// sfx
 		m_audio.stopAllSounds();
 		m_audio.stopAllMusic();
@@ -157,8 +174,8 @@ void LevelTwoWithTiles::handleInput(float dt)
 	if (((m_flag.getPosition() - m_player.getPosition()).length() < 75 &&
 		m_input.isPressed(sf::Keyboard::Scancode::F)))
 	{
-		// return to menu.
-		m_gameState.setCurrentState(State::MENU);
+		// Go to next level
+		m_gameState.setCurrentState(State::LEVELTHREE);
 	}
 
 	if (m_input.isPressed(sf::Keyboard::Scancode::Escape))
@@ -194,6 +211,31 @@ void LevelTwoWithTiles::update(float dt)
 			m_player.collisionResponse(t);
 		}	
 	}
+
+	if (!m_enemyDead)
+	{
+		for (auto enemy : m_enemyPointers)
+		{
+			enemy->update(dt);
+		}
+
+		for (auto enemy : m_enemyPointers)
+		{
+			if (Collision::checkBoundingBox(*enemy, m_player))
+			{
+				if (m_player.playerAttack() == false)
+				{
+					m_player.takeDamage();
+				}
+				else
+				{
+					enemy->setAlive(false);
+					m_enemyDead = true;
+				}
+			}
+		}
+	}
+
 
 	if (m_boopBlock.isAlive())
 	{
@@ -312,6 +354,10 @@ void LevelTwoWithTiles::render()
 		if (m_boopBlock.isAlive()) m_window.draw(m_boopBlock);
 		m_window.draw(m_flag);
 		m_window.draw(m_player);
+		if (!m_enemyDead)
+		{
+			for (auto enemy : m_enemyPointers) m_window.draw(*enemy);
+		}
 		if (m_coin.isAlive()) m_window.draw(m_coin);
 		m_window.draw(m_alertText);
 		m_ui.drawUI(m_window, m_player);

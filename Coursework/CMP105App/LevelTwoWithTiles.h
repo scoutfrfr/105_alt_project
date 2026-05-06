@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Coin.h"
 #include "Flag.h"
+#include "Enemy.h"
 #include <algorithm> // for clamp
 #include "UserInterface.h"
 
@@ -33,8 +34,10 @@ private:
     Coin m_coin;
     GameObject m_boopBlock;
     Flag m_flag;
+    std::vector<Enemy*> m_enemyPointers;
 
     bool m_gamePaused = false;
+    bool m_enemyDead = false;
     const sf::Vector2i WORLD_SIZE = { 2880, 648 };
     const sf::Vector2i VIEW_SIZE = { 432, 432 };
 
