@@ -24,6 +24,7 @@ class LevelThreeWithTiles :
 
     private:
         void updateCameraAndBackground();
+        void checkAndSetMessages();
         TileMap m_tilemap;
         TileMap m_bgtilemap;
         Player m_player;
@@ -32,6 +33,7 @@ class LevelThreeWithTiles :
         UserInterface m_ui;
         sf::Texture m_tileTexture;
         sf::Text m_alertText;
+    
         sf::Font m_font;
         bool m_flagLeverPulled = false;
         bool m_gamePaused = false;

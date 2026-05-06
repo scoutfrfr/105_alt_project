@@ -219,6 +219,7 @@ void LevelFourWithTiles::update(float dt)
 
 	// camera follows player, bounded.
 	updateCameraAndBackground();
+	checkAndSetMessages();
 }
 
 void LevelFourWithTiles::updateCameraAndBackground()
@@ -236,6 +237,23 @@ void LevelFourWithTiles::updateCameraAndBackground()
 	m_window.setView(view);
 
 	m_bgtilemap.setPosition({ player_pos.x - halfViewWidth, 0 });
+}
+
+void LevelFourWithTiles::checkAndSetMessages()
+{
+	// get position 25% in from top and left (get middle, half both dimensions)
+	sf::Vector2f inner_top_left = m_window.getView().getCenter();
+	sf::Vector2f window_size = {
+		static_cast<float>(m_window.getSize().x),
+		static_cast<float>(m_window.getSize().y) };
+	inner_top_left -= window_size * 0.25f;
+	if ((m_flag.getPosition() - m_player.getPosition()).length() < 75)
+	{
+		m_alertText.setCharacterSize(24);
+		m_alertText.setPosition(inner_top_left);
+		m_alertText.setString("Press F to end the day");
+	}
+
 }
 
 void LevelFourWithTiles::render()
@@ -276,7 +294,7 @@ void LevelFourWithTiles::onEnd()
 		m_flagLeverPulled = false;
 		m_enemyDead = false;
 		// reset alert text
-		m_alertText.setString("Who keeps turning\nthe wind off?");
+		m_alertText.setString("'Have to get past\nthese trees to get\nto the flag!'");
 		m_alertText.setPosition({ 50, 150 });
 		m_alertText.setCharacterSize(36);
 		m_alertText.setFillColor(sf::Color::Black);

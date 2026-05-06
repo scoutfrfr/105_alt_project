@@ -24,6 +24,7 @@ public:
 
 private:
     void updateCameraAndBackground();
+    void checkAndSetMessages();
     TileMap m_tilemap;
     TileMap m_bgtilemap;
     Player m_player;

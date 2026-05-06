@@ -222,6 +222,7 @@ void LevelThreeWithTiles::update(float dt)
 
 	// camera follows player, bounded.
 	updateCameraAndBackground();
+	checkAndSetMessages();
 
 }
 
@@ -241,6 +242,23 @@ void LevelThreeWithTiles::updateCameraAndBackground()
 	m_window.setView(view);
 
 	m_bgtilemap.setPosition({ player_pos.x - halfViewWidth, 0 });
+
+}
+
+void LevelThreeWithTiles::checkAndSetMessages()
+{
+	// get position 25% in from top and left (get middle, half both dimensions)
+	sf::Vector2f inner_top_left = m_window.getView().getCenter();
+	sf::Vector2f window_size = {
+		static_cast<float>(m_window.getSize().x),
+		static_cast<float>(m_window.getSize().y) };
+	inner_top_left -= window_size * 0.25f;
+	if ((m_flag.getPosition() - m_player.getPosition()).length() < 75)
+	{
+		m_alertText.setCharacterSize(24);
+		m_alertText.setPosition(inner_top_left);
+		m_alertText.setString("Press F to end the day");
+	}
 
 }
 
