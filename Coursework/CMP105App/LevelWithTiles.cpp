@@ -250,6 +250,9 @@ void LevelWithTiles::update(float dt)
 	{
 		m_player.takeDamage();
 		m_player.reset();
+		m_flagLeverPulled = false;
+		m_audio.stopAllSounds();
+		m_alertText.setString("Who keeps turning\nthe wind off?");
 		m_audio.playSoundbyName("death");
 
 
@@ -308,6 +311,7 @@ void LevelWithTiles::render()
 
 void LevelWithTiles::onBegin()
 {
+	m_player.setCurrentHealth(3);
 	m_enemyDead = false;
 	m_gamePaused = false;
 	std::cout << "Level one has been started\n";

@@ -214,10 +214,10 @@ void Player::reset()
 	setPosition({ 0, 50 });
 	m_velocity = { 0,0 };
 	m_gameEndTriggered = false;
+	m_leverPulled = false;
 	if (m_playerDead)
 	{
 		m_playerDead = false;
-		m_leverPulled = false;
 		m_playerHealth = 3.0f;
 	}
 

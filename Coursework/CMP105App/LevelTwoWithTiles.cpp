@@ -145,6 +145,7 @@ LevelTwoWithTiles::LevelTwoWithTiles(sf::RenderWindow& window, Input& input, Gam
 
 void LevelTwoWithTiles::onBegin()
 {
+	m_player.setCurrentHealth(3);
 	m_enemyDead = false;
 	m_gamePaused = false;
 	m_boopBlock.setAlive(false);
@@ -158,6 +159,7 @@ void LevelTwoWithTiles::onEnd()
 	if (!m_gamePaused)
 	{
 		// reset player
+		m_player.reset();
 		m_player.setCanDoubleJump(false);
 		m_enemyDead = false;
 		// sfx

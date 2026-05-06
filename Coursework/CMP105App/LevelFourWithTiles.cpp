@@ -111,7 +111,7 @@ LevelFourWithTiles::LevelFourWithTiles(sf::RenderWindow& window, Input& input, G
 
 	//m setup text
 	if (!m_font.openFromFile("font/bitcount.ttf")) std::cerr << "no font found";
-	m_alertText.setString("'Have to get past\nthese trees to get\nto the flag!'");
+	m_alertText.setString("'Have to get past\nthese pipes to get\nto the flag!'");
 	m_alertText.setPosition({ 20, 200 });
 	m_alertText.setCharacterSize(32);
 	m_alertText.setFillColor(sf::Color::Black);
@@ -277,6 +277,7 @@ void LevelFourWithTiles::render()
 
 void LevelFourWithTiles::onBegin()
 {
+	m_player.setCurrentHealth(3);
 	m_player.setCanDoubleJump(true);
 	m_enemyDead = false;
 	m_gamePaused = false;
@@ -293,7 +294,7 @@ void LevelFourWithTiles::onEnd()
 		m_player.reset();
 		m_enemyDead = false;
 		// reset alert text
-		m_alertText.setString("'Have to get past\nthese trees to get\nto the flag!'");
+		m_alertText.setString("'Have to get past\nthese pipes to get\nto the flag!'");
 		m_alertText.setPosition({ 50, 150 });
 		m_alertText.setCharacterSize(36);
 		m_alertText.setFillColor(sf::Color::Black);

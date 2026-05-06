@@ -286,6 +286,7 @@ void LevelThreeWithTiles::render()
 
 void LevelThreeWithTiles::onBegin()
 {
+	m_player.setCurrentHealth(3);
 	m_player.setCanDoubleJump(true);
 	m_enemyDead = false;
 	m_gamePaused = false;
