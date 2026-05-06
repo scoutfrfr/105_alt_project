@@ -148,7 +148,7 @@ void LevelFourWithTiles::handleInput(float dt)
 		m_input.isPressed(sf::Keyboard::Scancode::F)))
 	{
 		// Go to next level
-		m_gameState.setCurrentState(State::MENU);
+		m_gameState.setCurrentState(State::VICTORY);
 	}
 }
 

@@ -15,6 +15,7 @@
 #include "LevelTwoWithTiles.h"
 #include "LevelThreeWithTiles.h"
 #include "LevelFourWithTiles.h"
+#include "Victory.h"
 #include "GameOver.h"
 
 #ifndef SFML_VERSION_MAJOR
@@ -99,6 +100,7 @@ int main()
 	LevelThreeWithTiles tile_level_three(window, input, gameState, audioManager);
 	LevelFourWithTiles tile_level_four(window, input, gameState, audioManager);
 	GameOver gameOver(window, input, gameState, audioManager);
+	Victory victory(window, input, gameState, audioManager);
 	Scene* currentScene = &menu;
 
 	// Initialise objects for delta time
@@ -115,7 +117,8 @@ int main()
 		{State::LEVELTWO, &tile_level_two},
 		{State::LEVELTHREE, &tile_level_three},
 		{State::LEVELFOUR, &tile_level_four},
-		{State::GAMEOVER, &gameOver}
+		{State::GAMEOVER, &gameOver},
+		{State::VICTORY, &victory}
 	};
 
 	switch (gameState.getCurrentState())
@@ -151,6 +154,12 @@ int main()
 	break;
 
 	case (State::GAMEOVER):
+		gameOver.handleInput(deltaTime);
+		gameOver.update(deltaTime);
+		gameOver.render();
+	break;
+
+	case (State::VICTORY):
 		gameOver.handleInput(deltaTime);
 		gameOver.update(deltaTime);
 		gameOver.render();
