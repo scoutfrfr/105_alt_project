@@ -35,7 +35,6 @@ class LevelThreeWithTiles :
         sf::Text m_alertText;
     
         sf::Font m_font;
-        bool m_flagLeverPulled = false;
         bool m_gamePaused = false;
         bool m_enemyDead = false;
 

@@ -301,7 +301,6 @@ void LevelThreeWithTiles::onEnd()
 		std::cout << "Level three has been left\n";
 		// reset player and level state
 		m_player.reset();
-		m_flagLeverPulled = false;
 		m_enemyDead = false;
 		// reset alert text
 		m_alertText.setString("'Have to get past\nthese trees to get\nto the flag!'");
