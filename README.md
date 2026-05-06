@@ -11,10 +11,15 @@ _Dino Handyman:Now with weapons! is a 2D platformer which takes place over 4 lev
 for example:
 
 A/D to move left/right,
+
 spacebar to jump (tap again whilst in air to double jump when ability is unlocked),
+
 B to attack,
+
 F to interact with flags/levers,
+
 left-click to select menu options,
+
 escape to pause.
 
 ## Student Details
@@ -42,7 +47,7 @@ _The changes you have made since the group submission._
 
 ## Known Bugs
 
-* Sometimes buttons do not work when full screen, minimise screen then click button and it should work.
+* Sometimes buttons do not work when full screen, minimise screen then click the button and it should work.
 
 
 ---
