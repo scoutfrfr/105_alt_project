@@ -39,14 +39,14 @@ LevelFourWithTiles::LevelFourWithTiles(sf::RenderWindow& window, Input& input, G
 
 	sf::Vector2u mapDimensions{ 40, 8 };
 	std::vector<int> tileMap = {
-		b  , b   , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b, b, b,  b, b, b,   b,  b,  b, b  , b  , b  , b  , b  , b  , b  , b  , b  ,
-		b  , b   , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b, b, b,  b, b, b,   b,  b,  b, b  , b  , b  , b  , b  , b  , b  , b  , b  ,
-		b  , b   , b  , b  , b  , b  , 93 , 134, b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b, b, b,  b, b, b,   b,  b,  b, b  , b  , b  , b  , b  , b  , b  , b  , b  ,
-		b  , b   , b  , b  , b  , b  , 115, b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b, b, b,  b, b, b,   b,  b,  b, b  , b  , b  , b  , b  , b  , b  , b  , b  ,
-		b  , b   , b  , b  , b  , b  , 115, b  , b  , b  , b  , b,   132, 94 , b  , b  , b  , b  , b  , b  , b  , b  , b, b, b,  b, b, b, 132,133,134, b  , b  , b  , b  , b  , b  , b  , 131, b  ,
-		b  , b   , b  , b  , b  , b  , 135, b  , b  , b  , b  , b  , b  , 115, b  , b  , b  , b  , b  , b  , b  , b  , b, b, b,  b, b, b,   b,  b,  b, b  , b  , b  , b  , b  , b  , b  , 131 , b  ,
-		b  , b   ,  93, 134, b  , b  , b  , b  , b  , b  , b  , b  , b  , 113, 133, 134, b  , b  , b  , b  , b  , b  , b, b, b,  b, b, b,   b,  b,  b, b  , b  , 132, 133, 133, 133, 133, 133, 134,
-		132, 133 , 114, b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b, b, b,  b, b, b,   b,  b,  b, b  , b  , b  , b  , b  , b  , b  , b  , b  
+		b  , b   , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b, b, b, b,  b,  b,   b,  b,  b, b  , b  , b  , b  , b  , b  , b  , b  , b  ,
+		b  , b   , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b, b, b, b,  b,  b,   b,  b,  b, b  , b  , b  , b  , b  , b  , b  , b  , b  ,
+		b  , b   , b  , b  , b  , b  , 93 , 134, b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b, b, b, b,  b,  b,   b,  b,  b, b  , b  , b  , b  , b  , b  , b  , b  , b  ,
+		b  , b   , b  , b  , b  , b  , 115, b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b, b, b, b,  b,  b,   b,  b,  b, b  , b  , b  , b  , b  , b  , b  , b  , b  ,
+		b  , b   , b  , b  , b  , b  , 115, b  , b  , b  , b  , b,   132, 94 , b  , b  , b  , b  , b  , b  , b  , b  , b, b, b, 132,133,134, b,  b,  b, b  , b  , b  , b  , b  , b  , b  , 131, b  ,
+		b  , b   , b  , b  , b  , b  , 135, b  , b  , b  , b  , b  , b  , 115, b  , b  , b  , b  , b  , b  , b  , b  , b, b, b, b,  b,  b,   b,  b,  b, b  , b  , b  , b  , b  , 93, 133, 133 ,134,
+		b  , b   ,  93, 134, b  , b  , b  , b  , b  , b  , b  , b  , b  , 113, 133, 134, b  , b  , b  , b  , b  , b  , b, b, b, b,  b,  b,   b,  b,  b, b  , b  , 132, 133, 133, 114, b  , b  , b,
+		132, 133 , 114, b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b  , b, b, b, b,  b,  b,   b,  b,  b, b  , b  , b  , b  , b  , b  , b  , b  , b  
 	};
 
 	m_tilemap.loadTexture("gfx/tilemap.png");

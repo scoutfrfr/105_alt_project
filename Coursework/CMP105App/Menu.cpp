@@ -29,7 +29,7 @@ void Menu::handleInput(float dt)
 	if(m_input.isLeftMousePressed() && 
 		Collision::checkBoundingBox(m_playButton, mousePos))
 	{
-		m_gameState.setCurrentState(State::LEVELONE);
+		m_gameState.setCurrentState(State::LEVELFOUR);
 	}
 }
 

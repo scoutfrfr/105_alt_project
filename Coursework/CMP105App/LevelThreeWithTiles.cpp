@@ -46,7 +46,8 @@ LevelThreeWithTiles::LevelThreeWithTiles(sf::RenderWindow& window, Input& input,
 		17 , 18  , 19 , b  , b  , b  , 116 ,b  , b  , b  , b  , b  , b  , 57 , 97 , 59 , b  , b  , b  , b  , b  , b  , b, b, 57, 97, 59,b, b, b, b, b  , b  , b  , b  , b  , b  , b  , 131, b  ,
 		57 , 97  , 59 , b  , b  , b  , 116, b  , b  , b  , b  , b  , b  , b  , 116, b  , b  , b  , b  , b  , b  , b  , b, b, b, 116, b, b, b, b, b, b  , 61 , 62 , 62 , 62 , 62 , 62 , 62 , 63 ,
 		118, 117 , 139, b  , b  , b  , 116, b  , b  , b  , b  , b  , b  , b  , 116, b  , b  , b  , b  , b  , b  , b  , b, b, b, 116, b, b, b, b, b, b  , 121, 122, 122, 122, 122, 122, 122, 123,
-		b,   137 , b  , b  , b  , b  , 137, b  , b  , b  , b  , b  , b  , b  , 137, b  , b  , b  , b  , b  , b  , b  , b, b, b, 137, b, b, b, b, b, b  , 121, 122, 122, 122, 122, 122, 122, 123
+		b,   137 , b  , b  , b  , b  , 137, b  , b  , b  , b  , b  , b  , b  , 137, b  , b  , b  , b  , b  , b  , b  , b, b, b, 137, b, b, b, b, b, b  , 121, 122, 122, 122, 122, 122, 122, 123,
+		61,   62 , 63 , b  , b  , 61,   62, 63 , b  , b  , b  , b  , b  , 61, 62,  63  , b  , b  , b  , b  , b  , b  , b, b ,61,62, 63, b, b, b, b, b  , 121 ,122 ,122, 122, 122, 122, 122, 123
 	};
 
 	m_tilemap.loadTexture("gfx/tilemap.png");
